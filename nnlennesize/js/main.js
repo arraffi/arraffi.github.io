@@ -24,7 +24,9 @@ function replaceButton()
 
 function showError(str)
 {
-    document.getElementById("result").innerHTML = str;
+    document.getElementById("result").innerHTML = str;    
+    document.getElementById("button").value = "<< Вернуться";
+    document.getElementById("button").onclick = replaceButton;
 }
 
 function formatStringResult(type, res)
@@ -78,13 +80,14 @@ function calcSize()
     ageInMonth = ageInMonth + (11-dateNow.getMonth());    
     height = Math.ceil(heights[gender][minIndex][ageInMonth]); 
 
-    var html = "<p>Рост: " + hstr[minIndex] + "</p>";
-    html = html + "<p>Рост на 1 декабря: ~" + heights[gender][minIndex][ageInMonth] + " см</p>";
-    html = html + formatStringResult(0,sizes[height][0]);
-    html = html + formatStringResult(1,sizes[height][1]);
-    html = html + formatStringResult(2,sizes[height][2]);
-    html = html + formatStringResult(3,sizes[height][3]);
-    html = html + formatStringResult(4,sizes[height][4][gender]);
+    var html = "";
+    //html = "<p>Рост: " + hstr[minIndex] + "</p>";
+    html = html + "<p>Предполагаемый рост на 1 декабря "+ dateNow.getFullYear()+" года:  "+ heights[gender][minIndex][ageInMonth] + " см</p>";
+    html = html + formatStringResult(0,sizes[height][0]); //Комбинезон(отвороты)
+    html = html + formatStringResult(1,sizes[height][1]); //Комбинезон
+    html = html + formatStringResult(2,sizes[height][2]); //Комплект
+    //html = html + formatStringResult(3,sizes[height][3]); //Шлем
+    //html = html + formatStringResult(4,sizes[height][4][gender]); //Краги
 
     document.getElementById("data").style.display = 'none'
     document.getElementById("result").innerHTML = html;

@@ -49,7 +49,7 @@ font-size: 120%;
 <p><input name="button" id="button" type="button" class="waves-effect waves-light btn cyan darken-1" onclick="calcSize()" value="Узнать размер"></p>
 </div>
 <div>
-<p><b>Хотите получить подробную консультацию и&nbsp;посмотреть наличие вашего размера?</b></p>
+<p><b>Хотите получить подробную консультацию и посмотреть наличие вашего размера?</b></p>
 <a href="https://vk.com/write48906125" target="_blank" class="waves-effect waves-light btn green darken-1">Напишите мне в ЛС ➡</a>
 <!---<a class="waves-effect waves-light btn green darken-2" onclick="widgetVK.expand()">Или в сообщения группы</a><div id="vk_community_messages"></div>--->
 <br/>

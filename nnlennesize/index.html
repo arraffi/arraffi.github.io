@@ -8,7 +8,10 @@
 <script src="js/sizes.js"></script>
 <script src="js/main.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
-
+<script type="text/javascript" src="https://vk.com/js/api/openapi.js?158"></script>
+<script type="text/javascript">
+var widgetVK = VK.Widgets.CommunityMessages("vk_community_messages", 126873002, {widgetPosition: "left",buttonType: "no_button",tooltipButtonText: "Напишите в сообщения!"});
+</script>
 <style>
 body{
 font-size: 120%;
@@ -46,14 +49,9 @@ font-size: 120%;
 <p><input name="button" id="button" type="button" class="waves-effect waves-light btn cyan darken-1" onclick="calcSize()" value="Узнать размер"></p>
 </div>
 <div>
-<b>Хотите получить подробную консультацию и посмотреть наличие вашего размера?</b>
+<p><b>Хотите получить подробную консультацию и посмотреть наличие вашего размера?</b></p>
+<a href="#" class="waves-effect waves-light btn green darken-1" onclick="widgetVK.expand()">Напишите нам сообщение!</a><div id="vk_community_messages"></div>
 </div>
 </div>
-<script type="text/javascript" src="https://vk.com/js/api/openapi.js?158"></script>
-<!-- VK Widget -->
-<div id="vk_community_messages"></div>
-<script type="text/javascript">
-VK.Widgets.CommunityMessages("vk_community_messages", 126873002, {widgetPosition: "left",tooltipButtonText: "Напишите в сообщения"});
-</script>
 </body>
 </html>

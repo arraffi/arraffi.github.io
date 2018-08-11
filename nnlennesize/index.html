@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Определение размера</title>
+<script src="js/heights_m.js"></script>
+<script src="js/heights_g.js"></script>
+<script src="js/sizes.js"></script>
+<script src="js/main.js"></script>
+<style>
+body{
+font-size: 120%;
+}
+#topimg {
+    width: 100%;
+    height: 150px;
+    overflow: hidden;
+    display: table-cell;
+    vertical-align: middle;
+}
+#topimg>img {
+    width: 100%;   
+}
+</style>
+</head>
+<body onload="loadDefaults()">
+<div id="topimg">
+<img src="back.jpg">
+</div>
+<div id="content">
+<form id="data">
+<p>Заполните всего 3 поля:</p>
+<p>День рождения ребёнка:</p>
+<input type="date" name="date" required>
+<p>Мальчик или девочка:</p>
+<label><input type="radio" name="gender" value="0" class="with-gap" checked><span>Мальчик</span></label>
+<label><input type="radio" name="gender" value="1" class="with-gap"><span>Девочка</span></label>
+<p>Какого роста ваш ребёнок прямо сейчас:</p>
+<input type="number" name="height" placeholder="см" min="30" max="170" required>  
+</form>
+<p id="error" style="color:red"></p>
+<p id="result"></p>
+<p><input name="button" id="button" type="button" onclick="calcSize()" value="Узнать"></p>
+</div>
+<div>
+<p>Хотите получить подробную консультацию? <a href="https://vk.me/nnlenne">ПИШИТЕ "ДА"</a></p>
+<p>Хотите посмотреть наличие вашего размера? <a href="https://vk.me/nnlenne">ПИШИТЕ "СМОТРЕТЬ"</a></p>
+</div>
+</body>
+</html>

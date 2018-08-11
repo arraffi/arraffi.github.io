@@ -22,7 +22,7 @@ function replaceButton()
     document.getElementById("result").innerHTML = "";
 }
 
-function showError()
+function showError(str)
 {
     document.getElementById("result").innerHTML = str;
 }

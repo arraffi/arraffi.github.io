@@ -62,7 +62,7 @@ function calcSize()
     var ageInMonth = Math.ceil(ageInDays/30);
 
     document.getElementById("error").innerHTML = "";
-
+    if ((dateOfBirth>dateNow)||(dateOfBirth.getFullYear()<(dateNow.getFullYear()-16))) showError("Проверьте дату рождения!");
     if ((height<40)||(height>180)) showError("Проверьте рост (вводить нужно в сантиметрах)!");
     if ((gender!=0) && (gender!=1)) showError("Ошибка определения пола.");
 
@@ -77,10 +77,7 @@ function calcSize()
         }
     }
 
-    ageInMonth = ageInMonth + (11-dateNow.getMonth()); //на 1 декабря   
-
-    if (ageInMonth<0 || ageInMonth>120) showError("Проверьте дату рождения!");
-
+    ageInMonth = ageInMonth + (11-dateNow.getMonth());    
     height = Math.ceil(heights[gender][minIndex][ageInMonth]); 
 
     var html = "";

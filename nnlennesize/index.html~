@@ -37,19 +37,19 @@ font-size: 120%;
 <form id="data">
 <p>Хотите купить зимнюю одежду для&nbsp;ребенка, но&nbsp;сомневаетесь в&nbsp;размере? Заполните всего 3&nbsp;поля:</p>
 <p>1. День рождения ребёнка:</p>
-<input type="date" name="date" required>
+<input type="date" name="date" onchange="clearResult()" required>
 <p>2. Мальчик или девочка:</p>
 <label><input type="radio" name="gender" value="0" class="with-gap" checked><span>Мальчик</span></label>
 <label><input type="radio" name="gender" value="1" class="with-gap"><span>Девочка</span></label>
 <p>3. Какого роста ваш ребёнок прямо сейчас:</p>
-<input type="number" name="height" placeholder="см" min="30" max="170" required>  
+<input type="number" name="height" placeholder="см" min="40" max="120" onchange="clearResult()" required>  
 </form>
 <p id="error" style="color:red"></p>
 <p id="result"></p>
 <p><input name="button" id="button" type="button" class="waves-effect waves-light btn cyan darken-1" onclick="calcSize()" value="Узнать размер"></p>
 </div>
 <div>
-<p><b>Хотите получить подробную консультацию и посмотреть наличие вашего размера?</b></p>
+<p><b>Хотите получить подробную консультацию и&nbsp;посмотреть наличие вашего размера?</b></p>
 <a href="https://vk.com/write48906125" target="_blank" class="waves-effect waves-light btn green darken-1">Напишите мне в ЛС ➡</a>
 <!---<a class="waves-effect waves-light btn green darken-2" onclick="widgetVK.expand()">Или в сообщения группы</a><div id="vk_community_messages"></div>--->
 <br/>

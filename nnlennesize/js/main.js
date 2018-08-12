@@ -7,7 +7,8 @@ var heights=[heights_m,heights_g];
 
 function loadDefaults()
 {
-    document.forms[0].elements["date"].max = dateNow.toISOString().substring(0,10);
+    var maxDate = new Date(dateNow.getFullYear(),11,1);
+    document.forms[0].elements["date"].max = maxDate.toISOString().substring(0,10);
     
     document.forms[0].elements["date"].value = localStorage.getItem('date');
     document.forms[0].elements["gender"].value = localStorage.getItem('gender');
@@ -17,16 +18,19 @@ function loadDefaults()
 function replaceButton()
 {
     document.getElementById("button").value = "Узнать размер";
-    document.getElementById("button").onclick = calcSize;        
+    document.getElementById("button").onclick = calcSize;
     document.getElementById("data").style.display = 'block';
     document.getElementById("result").innerHTML = "";
 }
 
 function showError(str)
 {
-    document.getElementById("result").innerHTML = str;    
-    document.getElementById("button").value = "<< Вернуться";
-    document.getElementById("button").onclick = replaceButton;
+    document.getElementById("result").innerHTML = str;
+}
+
+function clearResult()
+{
+    document.getElementById("result").innerHTML = "";
 }
 
 function formatStringResult(type, res)
@@ -52,7 +56,11 @@ function calcSize()
     var date = document.forms[0].elements["date"].value;
     var gender = document.forms[0].elements["gender"].value;
     var height = document.forms[0].elements["height"].value;
-
+ 
+    if (date===undefined || date===NaN || date=="") {showError("Проверьте дату!"); return;}
+    if (gender===undefined || gender===NaN || gender=="") {showError("Ошибка определения пола."); return;}
+    if (height===undefined || height===NaN || height=="") {showError("Проверьте рост (вводить нужно в сантиметрах)!"); return;}
+   
     localStorage.setItem('date', date);
     localStorage.setItem('gender', gender);
     localStorage.setItem('height', height);
@@ -63,8 +71,8 @@ function calcSize()
 
     document.getElementById("error").innerHTML = "";
 
-    if ((height<40)||(height>180)) showError("Проверьте рост (вводить нужно в сантиметрах)!");
-    if ((gender!=0) && (gender!=1)) showError("Ошибка определения пола.");
+    if ((height<40)||(height>180)) {showError("Проверьте рост (вводить нужно в сантиметрах)!"); return;}
+    if ((gender!=0) && (gender!=1)) {showError("Ошибка определения пола."); return;}
 
     var minValue = 0;
     var minIndex = 0;
@@ -77,11 +85,17 @@ function calcSize()
         }
     }
 
-    ageInMonth = ageInMonth + (11-dateNow.getMonth()); //на 1 декабря   
+    ageInMonth = ageInMonth + (11-dateNow.getMonth()); //на 1 декабря
 
-    if (ageInMonth<0 || ageInMonth>120) showError("Проверьте дату рождения!");
+    if (ageInMonth<0) { showError("Дата рождения позже 1 декабря этого года!");return;}
+    if (ageInMonth>120) { showError("К сожалению, наш калькулятор работает для детей не старше 10 лет. Но мы работаем над этим!");return;}
 
-    height = Math.ceil(heights[gender][minIndex][ageInMonth]); 
+    height = Math.ceil(heights[gender][minIndex][ageInMonth]);
+
+    if (height<58){ showError("Для вашего малыша идеально подойдет конверт для новорожденного размер 62.");return;}
+    if (height<62) height=62;
+    if (height>152){ showError("");return;}
+
 
     var html = "";
     //html = "<p>Рост: " + hstr[minIndex] + "</p>";
@@ -94,7 +108,7 @@ function calcSize()
 
     document.getElementById("data").style.display = 'none'
     document.getElementById("result").innerHTML = html;
-    document.getElementById("button").value = "<< Вернуться";
+    document.getElementById("button").value = "🠨 Вернуться";
     document.getElementById("button").onclick = replaceButton;
 
 }
